@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 26 Des 2023 pada 14.51
+-- Waktu pembuatan: 28 Des 2023 pada 12.52
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.2.4
 
@@ -42,7 +42,9 @@ CREATE TABLE `film` (
 INSERT INTO `film` (`id_film`, `judul_film`, `tahun_rilis`, `durasi`, `id_genre`) VALUES
 (1, 'Judul Film 1', 2020, 120, 1),
 (2, 'Judul Film 2', 2019, 105, 2),
-(3, 'Judul Film 3', 2022, 150, 3);
+(3, 'Judul Film 3', 2022, 150, 3),
+(4, 'judul film 4', 2012, 120, 1),
+(5, 'judul film 5', 2011, 100, 3);
 
 -- --------------------------------------------------------
 
@@ -64,48 +66,6 @@ INSERT INTO `genre` (`id_genre`, `nama_genre`) VALUES
 (2, 'Komedi'),
 (3, 'Aksi');
 
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `pemeran`
---
-
-CREATE TABLE `pemeran` (
-  `id_pemeran` int(11) NOT NULL,
-  `nama_pemeran` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data untuk tabel `pemeran`
---
-
-INSERT INTO `pemeran` (`id_pemeran`, `nama_pemeran`) VALUES
-(1, 'Nama Pemeran 1'),
-(2, 'Nama Pemeran 2'),
-(3, 'Nama Pemeran 3');
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `pemeranfilm`
---
-
-CREATE TABLE `pemeranfilm` (
-  `id_film` int(11) NOT NULL,
-  `id_pemeran` int(11) NOT NULL,
-  `peran` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data untuk tabel `pemeranfilm`
---
-
-INSERT INTO `pemeranfilm` (`id_film`, `id_pemeran`, `peran`) VALUES
-(1, 1, 'Pemeran Utama'),
-(1, 2, 'Pemeran Pendukung'),
-(2, 2, 'Pemeran Utama'),
-(3, 3, 'Pemeran Utama');
-
 --
 -- Indexes for dumped tables
 --
@@ -124,17 +84,14 @@ ALTER TABLE `genre`
   ADD PRIMARY KEY (`id_genre`);
 
 --
--- Indeks untuk tabel `pemeran`
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
-ALTER TABLE `pemeran`
-  ADD PRIMARY KEY (`id_pemeran`);
 
 --
--- Indeks untuk tabel `pemeranfilm`
+-- AUTO_INCREMENT untuk tabel `film`
 --
-ALTER TABLE `pemeranfilm`
-  ADD PRIMARY KEY (`id_film`,`id_pemeran`),
-  ADD KEY `id_pemeran` (`id_pemeran`);
+ALTER TABLE `film`
+  MODIFY `id_film` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
@@ -145,13 +102,6 @@ ALTER TABLE `pemeranfilm`
 --
 ALTER TABLE `film`
   ADD CONSTRAINT `film_ibfk_1` FOREIGN KEY (`id_genre`) REFERENCES `genre` (`id_genre`);
-
---
--- Ketidakleluasaan untuk tabel `pemeranfilm`
---
-ALTER TABLE `pemeranfilm`
-  ADD CONSTRAINT `pemeranfilm_ibfk_1` FOREIGN KEY (`id_film`) REFERENCES `film` (`id_film`),
-  ADD CONSTRAINT `pemeranfilm_ibfk_2` FOREIGN KEY (`id_pemeran`) REFERENCES `pemeran` (`id_pemeran`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
