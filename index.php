@@ -35,7 +35,7 @@
           </div>
           <div class="col-md-4">
             <label for="inputtahun" class="form-label">Tahun Rilis</label>
-            <input type="date" class="form-control" id="inputtahun" name="tahun_rilis">
+            <input type="number" class="form-control" id="inputtahun" name="tahun_rilis">
           </div>
           <div class="col-md-4">
             <label for="inputgenre" class="form-label">Genre</label>
